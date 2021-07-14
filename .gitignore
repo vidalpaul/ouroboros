@@ -1,4 +1,4 @@
 *.pyc
 *__pycache__*
 *node_modules*
-blockchain-env/Lib/python3.9
+blockchain-env/Lib/
