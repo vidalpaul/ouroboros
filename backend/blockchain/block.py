@@ -83,7 +83,7 @@ class Block:
             - the block must have the proper last_hash reference
             - the block must meet the proof of wotk requirement
             - the difficulty must only adjust by 1
-            - th block hash must be a valid combination of the block fields
+            - the block hash must be a valid combination of the block fields
         """
 
         if block.last_hash != last_block.hash:
