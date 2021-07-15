@@ -38,6 +38,22 @@ class Transaction:
             'signature': sender_wallet.sign(output)
         }
 
+    def update(self, sender_wallet, recipient, amount):
+        """
+        Update the transaction with an existing oor new recipient
+        """
+        if amount > self.output[sender_wallet]:
+            raise Exception('Amount exceeds balance')
+        
+        if recipient in self.output:
+            self.output[recipient] = self.output[recipient] + amount
+        else:
+            self.output[recipient] = amount
+
+        self.output[sender_wallet] = self.output[sender_wallet] - amount
+
+        self.input = self.create_input(sender_wallet, self.output)
+
 def main():
     transaction = Transaction(Wallet(), 'recipient', 15)
     print(f'transaction.__dict__: {transaction.__dict__}')
