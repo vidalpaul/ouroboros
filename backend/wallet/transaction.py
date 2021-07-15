@@ -31,7 +31,7 @@ class Transaction:
         Sign the transaction and include the sender's public key and address.
         """
         return {
-            'timestamep': time.time_ns(),
+            'timestamp': time.time_ns(),
             'amount': sender_wallet.balance,
             'address': sender_wallet.address,
             'public_key': sender_wallet.public_key,
