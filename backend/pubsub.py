@@ -10,15 +10,14 @@ pnconfig = PNConfiguration()
 pnconfig.subscribe_key = subscribe_key
 pnconfig.publish_key = publish_key
 
-
-TEST_CHANNEL = 'TEST_CHANNEL'
-
+CHANNELS = {
+    'TEST': 'TEST',
+    'BLOCK': 'BLOCK' 
+}
 
 class Listener(SubscribeCallback):
     def message(self, pubnub, message_object):
         print(f'\n-- Channel: {message_object.channel} | Message: {message_object.message}')
-
-
 
 class PubSub():
     """
@@ -27,7 +26,7 @@ class PubSub():
     """
     def __init__(self):
         self.pubnub = PubNub(pnconfig)
-        self.pubnub.subscribe().channels([TEST_CHANNEL]).execute()
+        self.pubnub.subscribe().channels(CHANNELS.values()).execute()
         self.pubnub.add_listener(Listener())
 
     def publish(self, channel, message):
@@ -36,10 +35,16 @@ class PubSub():
         """
         self.pubnub.publish().channel(channel).message(message).sync()
 
+    def broadcast_block(self, block):
+        """
+        Broadcast a block object to all nodes.
+        """
+        self.publish(CHANNELS['BLOCK'], block.to_json())
+
 def main():
     pubsub = PubSub()
     time.sleep(1)
-    pubsub.publish(TEST_CHANNEL, {'foo':'bar'})
+    pubsub.publish(CHANNELS['TEST'], {'foo':'bar'})
 
 if __name__ == '__main__':
     main()
