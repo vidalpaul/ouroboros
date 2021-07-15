@@ -40,9 +40,9 @@ class Transaction:
 
     def update(self, sender_wallet, recipient, amount):
         """
-        Update the transaction with an existing oor new recipient
+        Update the transaction with an existing or new recipient
         """
-        if amount > self.output[sender_wallet]:
+        if amount > self.output[sender_wallet.address]:
             raise Exception('Amount exceeds balance')
         
         if recipient in self.output:
@@ -50,7 +50,7 @@ class Transaction:
         else:
             self.output[recipient] = amount
 
-        self.output[sender_wallet] = self.output[sender_wallet] - amount
+        self.output[sender_wallet.address] = self.output[sender_wallet.address] - amount
 
         self.input = self.create_input(sender_wallet, self.output)
 
