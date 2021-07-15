@@ -79,8 +79,8 @@ def test_is_valid_block_jumped_difficulty(last_block, block):
         Block.is_valid_block(last_block, block)
 
 def test_is_valid_block_bad_block_hash(last_block, block):
-    block.hash = '0000000000000000bbbabc'
+	block.hash = '0000000000000000bbbabc'
 
-    with pytest.raises(Exception, match='must be a correct hash'):
-        Block.is_valid_block(last_block, block)
+	with pytest.raises(Exception, match='block hash must be correct'):
+		Block.is_valid_block(last_block, block)
 
