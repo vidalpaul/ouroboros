@@ -23,9 +23,11 @@ print(f'start_blockchain: {start_blockchain}')
 recipient = Wallet().address
 post_wallet_transact_1 = post_wallet_transact(recipient, 20)
 print(f'\npost_wallet_transact_1: {post_wallet_transact_1}')
-post_wallet_transact_2 = post_wallet_transact(recipient, 30)
-print(f'\npost_wallet_transact_1: {post_wallet_transact_2}')
 
-time.sleep(2)
+time.sleep(1)
+post_wallet_transact_2 = post_wallet_transact(recipient, 30)
+print(f'\npost_wallet_transact_2: {post_wallet_transact_2}')
+
+time.sleep(1)
 mined_block = get_blockchain_mine()
 print(f'\nmined_block: {mined_block}')
