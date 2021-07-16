@@ -8,11 +8,13 @@ from backend.blockchain.blockchain import Blockchain
 from backend.wallet.wallet import Wallet
 from backend.wallet.transaction import Transaction
 from backend.pubsub import PubSub
+from backend.wallet.transaction_pool import TransactionPool
 
 app = Flask(__name__)
 blockchain = Blockchain()
 wallet = Wallet()
-pubsub = PubSub(blockchain)
+transaction_pool = TransactionPool()
+pubsub = PubSub(blockchain, transaction_pool)
 
 @app.route('/')
 def route_default():
