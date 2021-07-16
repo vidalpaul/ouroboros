@@ -44,7 +44,7 @@ def route_wallet_transact():
         transaction_data['amount']
         )
 
-    print(f'transaction.to_json(): {transaction.to_json()}')
+    pubsub.broadcast_transaction(transaction)
 
     return jsonify(transaction.to_json())
 
