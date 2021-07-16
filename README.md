@@ -32,3 +32,8 @@ Make sure to activate the virtual environment.
 ````
 export PEER=True && python3 -m backend.app
 ```
+
+**Stuff I've learned**
+Best practices in Object-oriented programming
+Best practices in testing with pytest
+The Pub/Sub pattern
