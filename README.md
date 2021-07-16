@@ -36,4 +36,5 @@ export PEER=True && python3 -m backend.app
 **Stuff I've learned**
 Best practices in Object-oriented programming
 Best practices in testing with pytest
+Writing automatic test scripts
 The Pub/Sub pattern
