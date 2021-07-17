@@ -81,7 +81,11 @@ class Blockchain:
             block = chain[i]
             has_mining_reward = False
             for transaction_json in block.data:
-                transaction = Transaction.from_json(transaction_json)
+                transaction = Transaction.from_json(transaction_json)      
+
+                if transaction.id in transaction_ids:
+                    raise Exception(f'Transaction {transaction.id} is not unique')
+                transaction_ids.add(transaction.id)
 
                 if transaction.input == MINING_REWARD_INPUT:
                     if has_mining_reward == True:
@@ -90,20 +94,16 @@ class Blockchain:
                             f'Check block with hash: {block.hash}'
                             )
                     has_mining_reward = True
+                else:
+                    historic_blockchain = Blockchain()
+                    historic_blockchain.chain = chain[0:i]
+                    historic_balance = Wallet.calculate_balance(
+                        historic_blockchain,
+                        transaction.input['address']
+                    )
 
-                if transaction.id in transaction_ids:
-                    raise Exception(f'Transaction {transaction.id} is not unique')
-                transaction_ids.add(transaction.id)
-
-                historic_blockchain = Blockchain()
-                historic_blockchain.chain = chain[0:i]
-                historic_balance = Wallet.calculate_balance(
-                    historic_blockchain,
-                    transaction.input['address']
-                )
-
-                if historic_balance != transaction.input['amount']:
-                    raise Exception(f'Transaction {transaction.id} has an invalid input amount')
+                    if historic_balance != transaction.input['amount']:
+                        raise Exception(f'Transaction {transaction.id} has an invalid input amount')
 
                 Transaction.is_valid_transaction(transaction)
 
