@@ -1,4 +1,5 @@
 import { MILLISECONDS_PY } from '../config';
+import Transaction from './Transaction';
 
 import React from 'react';
 
@@ -12,7 +13,12 @@ const Block = ({ block }) => {
     <div className='Block'>
       <div>Hash: {hashDisplay}</div>
       <div>Timestamp: {timestampDisplay}</div>
-      <div>Data: {JSON.stringify(data)}</div>
+      {data.map((transaction) => (
+        <div key={transaction.id}>
+          <hr />
+          <Transaction transaction={transaction} />
+        </div>
+      ))}
     </div>
   );
 };
