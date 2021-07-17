@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Blockchain from './Blockchain';
+import ConductTransaction from './ConductTransaction';
 import logo from '../assets/logo.png';
 
 import { API_BASE_URL } from '../config';
@@ -22,6 +23,8 @@ function App() {
         <div>Balance: {balance}</div>
       </div>
       <Blockchain />
+      <br />
+      <ConductTransaction />
     </div>
   );
 }
