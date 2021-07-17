@@ -1,6 +1,6 @@
 import { MILLISECONDS_PY } from '../config';
 import Transaction from './Transaction';
-import Reac, { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 
 const ToggleTransactionDisplay = ({ block }) => {
