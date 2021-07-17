@@ -78,7 +78,7 @@ class Blockchain:
         transaction_ids = set()
         for block in chain:
             has_mining_reward = False
-            for transaction_json in block:
+            for transaction_json in block.data:
                 transaction = Transaction.from_json(transaction_json)
 
                 if transaction.input == MINING_REWARD_INPUT:
